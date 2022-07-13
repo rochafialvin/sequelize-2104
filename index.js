@@ -3,6 +3,8 @@ const app = express();
 const port = 2105;
 const cors = require("cors");
 
+const userRouter = require("./routers/users");
+
 app.use(cors());
 app.use(express.json());
 
@@ -10,6 +12,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("API JALAN MZ 🚀");
 });
+
+app.use("/users", userRouter);
 
 // error handler
 app.use((error, req, res, next) => {

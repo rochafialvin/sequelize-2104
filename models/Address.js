@@ -1,6 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/database");
-const User = require("./User");
 
 class Address extends Model {}
 
@@ -30,6 +29,8 @@ Address.init(
   }
 );
 
-Address.belongsTo(User, { foreignKey: "userId", as: "addresses" });
+Address.associate = (models) => {
+  Address.belongsTo(models.User, { foreignKey: "userId", as: "addresses" });
+};
 
 module.exports = Address;
